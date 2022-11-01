@@ -1,0 +1,526 @@
+1 – Aula de criação de um aplicativo para as aplicações de React
+
+Requisito: Deve-se ter o Node instalado
+
+	Dentro de uma pasta feita apropriadamente, deve-se abrir o terminal referente a esta pasta, e inserir os seguintes comandos:
+
+npx create-react-app fundamentos-react
+
+fundamentos-react é o nome 
+
+	Dentro de fundamentos-react, deve-se entrar:
+
+npm start
+
+	Desta forma, já foi concretizado todo o processo de inicialização. Todas as ações devem ser feitas no documento index.js.
+
+2 – Exibição de string na tela
+
+No documento index.js, deve ser inserido o seguinte código:
+Código:
+
+import ReactDOM from 'react-dom'
+
+const el = document.getElementById('root')
+
+ReactDOM.render('Olá, React!', el)
+
+
+
+
+3 – Sintaxe JSX
+	A sintaxe JSX consiste em código JavaScript que se assemelha(identicamente) ao HTML.
+
+Código:
+import ReactDOM from 'react-dom'
+import React from 'react'
+
+ReactDOM.render(
+    <div>Olá, React!</div>, // sintaxe jsx
+    document.getElementById('root')
+    )
+
+Observação:  const el = document.getElementById(‘root’) foi inserido como segundo parâmetro da função ReactDOM.render(), de forma a imprimir o que for passado como primeiro parâmetro.
+
+	Há uma forma alternativa de se imprimir algo na tela, usando jsx, desta forma:
+
+Código:
+import ReactDOM from 'react-dom'
+import React from 'react'
+
+const tag = <strong>Olá, React!</strong>
+
+ReactDOM.render
+(
+    <div>{tag}</div>,
+    document.getElementById('root')
+)
+
+4 – Carregando CSS
+
+	Para se inserir um documento index.css, deve-se criá-lo na mesma pasta src, e em index.js, inserir o trecho de código: import ‘./index.css’.
+
+Código:
+import './index.css'
+import ReactDOM from 'react-dom' //ReactDOM foi um nome da escola do usuário, podendo ser qualquer outro
+import React from 'react'
+
+const tag = <strong>Olá, React!</strong>
+
+ReactDOM.render
+(
+    <div>{tag}</div>,
+    document.getElementById('root')
+)
+
+ReactDOM, como mencionado acima, é um nome de escolha arbitrária, que pode se escolher qualquer outro.
+
+Outra forma de se escrever este código, é da forma abaixo. 
+
+
+
+
+
+
+
+
+  import './index.css'
+import ReactDOM from 'react-dom' //ReactDOM foi um nome da escola do usuário, podendo ser qualquer outro
+import React from 'react'
+
+const tag = 
+<div>
+    <h1>Exemplo de Título</h1>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce est purus, elementum at ligula vitae, sagittis convallis quam. In elementum id purus a malesuada. Proin a porta erat. Nulla et rutrum urna. Etiam molestie ipsum et velit pretium aliquet. Ut at congue justo. Praesent lobortis nibh at orci porta, quis ultrices tellus fermentum. Suspendisse non dignissim massa, rutrum congue nibh.
+    </p>
+    
+</div>
+
+ReactDOM.render
+(
+    <div>{tag}</div>,
+    document.getElementById('root')
+)
+
+A variável tag é capaz de se armazenar toda uma estrutura de página html, e desta forma, passa-se como parâmetro para a função ReactDOM, que a exibe na página inicial.
+Observação: {tag} deve ser precedido e sucedido por divs, para que seja exibido corretamente na tela.
+
+5 – Componente(primeira parte)
+
+O componente é um arquivo que contém determinada instrução, e que pode ser importado pelo documento principal index.js, da seguinte forma:
+
+Código:
+import './index.css'
+import ReactDOM from 'react-dom'
+import React from 'react'
+
+import Primeiro from './components/basics/Primeiro.js'
+//importação de um componente
+ReactDOM.render
+(
+    <div>
+        <Primeiro></Primeiro>
+    </div>,
+    document.getElementById('root')
+)
+
+
+6 – Componentes (segunda parte)
+
+Agora, será visto como se pode montar toda uma estrutura de código, utilizando divs, em um componente.
+
+No arquivo Primeiro.js, como será utilizada a sintaxe JSX, deverá ser importado React de react, como será visto abaixo.
+
+Como se quer retornar uma estrutura de sintaxe JSX, o return deverá ser feito de forma ligeiramente diferente, utilizando parênteses. Desta forma, pode-se criar estruturas inteiras de JSX sem o risco de se não reconhecer o código.
+
+Ao fim, o código de Primeiro.js deverá se parecer desta forma:
+Código de Primeiro.js:
+import React from "react"
+
+export default function Primeiro(){
+    const msg = 'Seja bem vindo!'
+    return (
+    <div>
+        <h2>Primeiro Componente</h2>
+        <p>{msg}</p>
+    </div>
+    )
+}
+
+Código de index.js:
+import './index.css'
+import ReactDOM from 'react-dom'
+import React from 'react'
+
+import Primeiro from './components/basics/Primeiro.js'
+//importação de um componente
+ReactDOM.render
+(
+    <div>
+        <Primeiro></Primeiro>
+    </div>,
+    document.getElementById('root')
+)
+
+Código de index.css:
+body{
+    background-color: #222;
+    color: white;
+}
+
+
+7 – Componente com parâmetros
+
+Os componentes como já conhecemos já foram vistos acima. Trata-se de documentos que são importados pelo documento principal, que tem a função de exibir uma ou mais informações no formato html.
+Entretanto, vez ou outra, há a necessidade destes componentes serem úteis para variadas situações, e para isto, devem receber parâmetros. Abaixo, pode-se ver um destes exemplos.
+
+Código:
+Index.js:
+
+import './index.css'
+import ReactDOM from 'react-dom'
+import React from 'react'
+
+import Primeiro from './components/basics/Primeiro.jsx'
+import ComParametro from './components/basics/ComParametro.jsx'
+//importação de um componente
+ReactDOM.render
+(
+    <div id = "app">
+        <Primeiro></Primeiro>
+        <ComParametro titulo = "Segundo componente" subtitulo = "muito legal!"></ComParametro>
+    </div>,
+    document.getElementById('root')
+)
+
+
+ComParametro.jsx:
+
+import React from "react"
+
+export default function ComParametro(props){
+    return (
+    <div>
+        <h2>{props.titulo}</h2>  
+        <h3>{props.subtitulo}</h3>
+    </div>)
+}
+
+
+Percebe-se que a passagem de parâmetros ocorreu ainda no documento principal, sendo passado como titulo, segundo componente, e como subtítulo, muito legal!.
+
+Há ainda o exemplo de saída de dados da situação escolar de determinado aluno, como pode ser visto abaixo:
+
+Index.js:
+import './index.css'
+import ReactDOM from 'react-dom'
+import React from 'react'
+
+import Primeiro from './components/basics/Primeiro.jsx'
+import ComParametro from './components/basics/ComParametro.jsx'
+//importação de um componente
+ReactDOM.render
+(
+    <div id = "app">
+        <Primeiro></Primeiro>
+        <ComParametro nome = "Pedro Silva" nota = {9.3}></ComParametro>
+    </div>,
+    document.getElementById('root')
+)
+
+
+ComParametro.jsx:
+import React from "react"
+
+export default function ComParametro(props){
+    const status = props.nota >= 7.0 ? 'Aprovado' : 'Reprovado'
+    return (
+    <div>
+        <h2>Nome do aluno: {props.nome}</h2>
+        <h3>Nota do aluno: {props.nota}</h3>
+        <h3>SItuação Final: {status}</h3>
+    </div>)
+}
+
+
+Deve-se salientar que:
+Os arquivos de componentes podem ser tanto .js quanto .jsx. Entretanto, por default, eles serão .jsx.
+Props é uma abreviação para properties, ou propriedades.
+Quando há a necessidade de se passar um argumento numérico como parâmetro, deve-se denotá-lo entre chaves, como pôde ser visto em index.js, na passagem do argumento nota.
+
+8 – Propriedades são somente leitura
+Um importante aprendizado que se deve ter é que nenhum dos valores que são passados como parâmetros podem ser alterados. Eles servem somente para a leitura (read only).
+Desta forma, a seguinte linha de código não funcionaria, em ComParametro.jsx:
+
+props.nota = Math.ceil(props.nota)
+
+A forma correta de se manipular um valor, seria desta forma:
+
+ComParametro.jsx:
+
+import React from "react"
+
+export default function ComParametro(props){
+    const status = Math.ceil(props.nota) >= 7.0 ? 'Aprovado' : 'Reprovado'
+    const NotaInt = Math.ceil(props.nota)
+    return (
+    <div>
+        <h2>Nome do aluno: {props.nome}</h2>
+        <h3>Nota do aluno: {NotaInt}</h3>
+        <h3>SItuação Final: {status}</h3>
+    </div>)
+}
+
+Nota-se que foi criada uma constante que foi responsável por receber a nota já manipulada através do método ceil.
+
+9 – React Fragments
+
+Em React, todas as estruturas devem estar inseridas em uma div, caso contrário, ocorrerá um erro interno. Isto pode ser evitado de duas formas: incluindo-os dentro de uma div, ou utilizando o React.Fragment. Desta forma:
+
+ComParametro.jsx:
+import React from "react"
+
+export default function ComParametro(props){
+    const status = Math.ceil(props.nota) >= 7.0 ? 'Aprovado' : 'Reprovado'
+    const NotaInt = Math.ceil(props.nota)
+    return (
+    <React.Fragment>
+        <h2>Nome do aluno: {props.nome}</h2>
+        <h3>Nota do aluno: {NotaInt}</h3>
+        <h3>SItuação Final: {status}</h3>
+    </React.Fragment>)
+}
+
+Nota-se que onde havia div, há agora React.Fragment. Há ainda outra forma, como pode ser vista abaixo:
+
+import React from "react"
+
+export default function ComParametro(props){
+    const status = Math.ceil(props.nota) >= 7.0 ? 'Aprovado' : 'Reprovado'
+    const NotaInt = Math.ceil(props.nota)
+    return (
+    <>
+        <h2>Nome do aluno: {props.nome}</h2>
+        <h3>Nota do aluno: {NotaInt}</h3>
+        <h3>SItuação Final: {status}</h3>
+    </>)
+}
+
+Desta forma, React.Fragment fica subentendido, sendo esta sua forma reduzida.
+Entretanto, a principal diferença entre sua forma comum e sua forma reduzida é que não se pode fazer a passagem de parâmetros nesta última forma.
+
+10 – Componente App
+
+Primeiro, deve-se salientar que houve uma reorganização dos documentos presentes nesta aplicação, desta forma:
+
+ 
+Legenda: Localização dos arquivos
+
+App.jsx:
+import React from 'react';
+
+import Primeiro from './components/basics/Primeiro.jsx'
+import ComParametro from './components/basics/ComParametro.jsx'
+import Fragmento from './components/basics/Fragmento'
+
+export default function App(props){
+    return (
+        <div id = "app">
+            <h1>Fundamentos de React</h1>
+            <Fragmento nome = 'Pedro Silva' nota = {9.3}></Fragmento>
+            <ComParametro nome = "Pedro Silva" nota = {9.3}></ComParametro>
+            <Primeiro></Primeiro>
+        </div>
+    )
+}
+
+
+Index.js:
+import './index.css'
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+import App from './App'
+ReactDOM.render
+(
+    <App></App>,
+    document.getElementById('root')
+)
+
+
+Fragmento.jsx:
+import React from "react"
+
+export default function ComParametro(props){
+    const status = Math.ceil(props.nota) >= 7.0 ? 'Aprovado' : 'Reprovado'
+    const NotaInt = Math.ceil(props.nota)
+    return (
+    <>
+        <h2>Nome do aluno: {props.nome}</h2>
+        <h3>Nota do aluno: {NotaInt}</h3>
+        <h3>SItuação Final: {status}</h3>
+    </>)
+}
+
+Além de ComParametro.jsx e Primeiro.jsx...
+
+A ideia desta sessão é demonstrar como se pode simplificar a notação de funções a uma arrow function, notação esta que será utilizada predominantemente daqui para frente.
+
+Atualmente, a função é denotada desta forma:
+export default function App(props){
+    return (
+        <div id = "app">
+            <h1>Fundamentos de React</h1>
+            <Fragmento nome = 'Pedro Silva' nota = {9.3}></Fragmento>
+            <ComParametro nome = "Pedro Silva" nota = {9.3}></ComParametro>
+            <Primeiro></Primeiro>
+        </div>
+    )
+}
+
+
+Pode ser reduzida a uma função anônima:
+
+export default function(props){
+    return (
+        <div id = "app">
+            <h1>Fundamentos de React</h1>
+            <Fragmento nome = 'Pedro Silva' nota = {9.3}></Fragmento>
+            <ComParametro nome = "Pedro Silva" nota = {9.3}></ComParametro>
+            <Primeiro></Primeiro>
+        </div>
+    )
+}
+
+
+Ou mesmo:
+
+export default (props)=>{
+    return (
+        <div id = "app">
+            <h1>Fundamentos de React</h1>
+            <Fragmento nome = 'Pedro Silva' nota = {9.3}></Fragmento>
+            <ComParametro nome = "Pedro Silva" nota = {9.3}></ComParametro>
+            <Primeiro></Primeiro>
+        </div>
+    )
+}
+
+
+Props pode ser suprimido desta forma:
+
+export default (_)=>{
+    return (
+        <div id = "app">
+            <h1>Fundamentos de React</h1>
+            <Fragmento nome = 'Pedro Silva' nota = {9.3}></Fragmento>
+            <ComParametro nome = "Pedro Silva" nota = {9.3}></ComParametro>
+            <Primeiro></Primeiro>
+        </div>
+    )
+}
+
+E, por ser uma arrow function, as chaves e o return também podem ser omitidos desta forma:
+
+export default (_)=>(
+        <div id = "app">
+            <h1>Fundamentos de React</h1>
+            <Fragmento nome = 'Pedro Silva' nota = {9.3}></Fragmento>
+            <ComParametro nome = "Pedro Silva" nota = {9.3}></ComParametro>
+            <Primeiro></Primeiro>
+        </div>
+    )
+
+Esta é a forma final, e portanto mais simplificada que uma função pode ser denotada. É desta forma que as funções serão expressas daqui pra frente.
+
+11 - Desafio Numero Aleatório
+
+App.jsx:
+
+import React from 'react';
+
+import Primeiro from './components/basics/Primeiro.jsx'
+import ComParametro from './components/basics/ComParametro.jsx'
+import Fragmento from './components/basics/Fragmento'
+import Aleatorio from './components/basics/Aleatorio'
+
+export default (_)=>(
+        <div id = "app">
+            <h1>Fundamentos de React</h1>
+            <Aleatorio numero1 = {1} numero2 = {10}/>
+            <Fragmento nome = 'Pedro Silva' nota = {9.3}/>
+            <ComParametro nome = "Pedro Silva" nota = {9.3}/>
+            <Primeiro/>
+        </div>
+    )
+
+Aleatorio.jsx:
+
+import React from "react";
+import ReactDOM from 'react-dom'
+
+export default (props) => {
+    const min = props.numero1
+    const max = props.numero2
+    const rand = parseInt(Math.random() * (max - min)) + min
+
+    return(
+        <div>    
+            <h2>Valor Aleatório</h2>
+            <p>
+                Valor Mínimo: {min}
+            </p>
+            <p>
+                Valor Máximo: {max}
+            </p>
+            <p>
+                Valor Escolhido: {rand}
+            </p>
+        </div>
+    )
+}
+
+12 - Componente Card(part 1)
+
+O componente Card serve para melhor delimitar as estruturas, de forma a organizá-las melhor.
+Para isso, deve ser criada, dentro da pasta components, uma pasta de nome layout, que comportará os arquivos Card.jsx e Card.css. 
+Dentro de Card.jsx, onde haver a sessão conteúdo, deve ser feito desta forma:
+
+import React from "react";
+import './Card.css'
+
+export default (props) => {
+    return(
+    <div className = "Card">
+        <div className = "Title">{props.titulo}</div>
+        <div className = "Content">{props.children}</div>
+    </div>)
+}
+
+Onde props.children diz respeito a uma generalização do que pode ser fornecido como conteúdo do Card, e desta forma, o tornando possível de ser reutilizado!
+
+Sua estilização será feita da seguinte forma:
+
+.Card{
+    background-color: red;
+    border: 3px solid red;
+    border-radius: 10px;
+    overflow: hidden;
+    font-family: Oswald;
+    margin: 15px;
+}
+
+.Card .Title{
+    padding: 5px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.Card .Content{
+    background-color: white;
+    color: black;
+    padding: 10px;
+}
+
+Em index.html, foi feito o link com a fonte Oswald, fornecida pelo Google.
