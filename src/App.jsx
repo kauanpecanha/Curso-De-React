@@ -10,6 +10,8 @@ import Familia from './components/basics/Familia'
 import FamiliaMembro from './components/basics/FamiliaMembro'
 import ListaAlunos from './components/Repetição/ListaAlunos';
 import ListaProdutos from './components/Repetição/ListaProdutos';
+import ParOuImpar from '../src/components/Condicional/ParOuImpar'
+import UsuarioInfo from '../src/components/Condicional/UsuarioInfo'
 
 export default (_)=>(
         <div id = "app">
@@ -17,6 +19,14 @@ export default (_)=>(
 
             <div className="cards">
                 
+                <Card titulo = "Condicional - Aula 2" color = "#900C3F">
+                    <UsuarioInfo usuario = {{nome : 'Fernando'}}></UsuarioInfo>
+                    <h3>Checar o problema que está acontecendo com este card, depois!</h3>
+                </Card>
+                
+                <Card titulo = "Condicional - Aula 1" color = "#900C3F">
+                    <ParOuImpar number = {21}></ParOuImpar>
+                </Card>
 
                 <Card titulo = "Exercício de Repetição" color = "darkmagenta">
                     <ListaProdutos></ListaProdutos>
