@@ -19,7 +19,7 @@ export default (_)=>(
 
             <div className="cards">
                 
-                <Card titulo = "Condicional - Aula 2" color = "#900C3F">
+                <Card titulo = "Condicional - Aula 2" color = "#316409">
                     <UsuarioInfo usuario = {{nome : 'Fernando'}}></UsuarioInfo>
                     <h3>Checar o problema que está acontecendo com este card, depois!</h3>
                 </Card>
